@@ -3,12 +3,13 @@ import express, { NextFunction, Request, Response } from "express";
 const app = express();
 
 import "./database";
+import { router } from "./router";
 
 app.use(express.json());
-
 app.get("/", async (req, res) => {
   return res.json({ message: "API is Running" })
 })
+app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
